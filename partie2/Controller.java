@@ -21,19 +21,13 @@ public class Controller {
 	}
 	
 	public static void main(String[] args) throws Exception {
-		// TODO Auto-generated method stub
-		PublishCapability spec = new PublishCapability();
-		//System.out.println(msg.toString());
-		MessageBody msg = new MessageBody(1);
-		spec.Publish("SPEC", msg.toString());
-		Thread.sleep(5000); 
 		
-          /*SubscribeOnCapability controller = new SubscribeOnCapability();
+          SubscribeOnCapability controller = new SubscribeOnCapability();
           controller.Subscribe("QUEUE");
           while(true) {
           controller.getMessage();
           Thread.sleep(3000);
-          }*/
+          }
 	}
 
 }

@@ -9,7 +9,6 @@ import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.DeliverCallback;
 
 public class SubscribeOnCapability {
-	String msg = "0";
 	String QUEUE;
 	Channel canal;
 	ConnectionFactory factory;
@@ -18,7 +17,6 @@ public class SubscribeOnCapability {
 		factory = new ConnectionFactory();
 		connexion = factory.newConnection();		
 		canal = connexion.createChannel();
-		msg = "0";
 	}	
 	
 	public void Subscribe(String queue)	throws Exception {
@@ -30,7 +28,6 @@ public class SubscribeOnCapability {
 		//innterface à travers laquelle le consommateur peut retiré le message
             DeliverCallback deliverCallback = (consumerTag, delivery) -> {
             	String message = new String(delivery.getBody(), "UTF-8");
-                msg = new String(message.toString());
             	int code = Integer.parseInt(message);           
                 
                 //construction des modèle de message
@@ -47,7 +44,7 @@ public class SubscribeOnCapability {
         		  type = "Int";
         		//System.out.println("i["+type+" msg : code message "+code+"]");
         };
-        msg = "ab";
+       
        //notifier que le message a été consommé
             canal.basicConsume(QUEUE , true, deliverCallback, consumerTag -> { });
             //System.out.println(" EN attente d'un message");	

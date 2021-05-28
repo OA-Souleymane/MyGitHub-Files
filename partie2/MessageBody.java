@@ -5,6 +5,11 @@ import java.nio.charset.StandardCharsets;
 public class MessageBody {
 	
 	int code_msg = 0;
+	//code = 0 => Capability msg, 
+	//code = 1 => Specification msg, 
+	//code = 2 => Receipt msg, 
+	//code = 3 => Result msg, 
+	//sinon => Interrupt msg;
 	//default constructor
 	public MessageBody() {
 		code_msg = 0;

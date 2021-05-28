@@ -21,17 +21,9 @@ public class Agent {
 	}
 	public static void main(String[] args) throws Exception {
 		// TODO Auto-generated method stub
-		SubscribeOnCapability demande = new SubscribeOnCapability();
-		demande.Subscribe("SPEC");
-		demande.getMessage();
-		System.out.println(demande.msg+"-------------------------");
-		Thread.sleep(5000);
 		
 		
-		
-		
-		
-	/*int code_msg = 0;
+	int code_msg = 0;
 		PublishCapability agent = new PublishCapability();
 		//System.out.println(msg.toString());
 		while(true) {
@@ -39,7 +31,7 @@ public class Agent {
 		agent.Publish("QUEUE", msg.toString());
 		code_msg ++;
 		Thread.sleep(3000);
-		}*/
+		}
 	}
 
 }

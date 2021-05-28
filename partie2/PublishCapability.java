@@ -32,7 +32,6 @@ public class PublishCapability {
             
             // stockage du message dans la queue en codage lisibble
             canal.basicPublish("", queue , null, msg.getBytes(StandardCharsets.UTF_8));
-            //System.out.println("Message produit: " + message + "'");
 		
 	}
 }
