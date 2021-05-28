@@ -20,12 +20,12 @@ public class MessageBody {
 	}
 	
 	//getter
-	public int getCapability() {
+	public int getCodeMsg() {
 		return this.code_msg;			
 	}
 	
 	//setter
-	void setCapability(int cMsg) {
+	void setCodeMsg(int cMsg) {
 		code_msg = cMsg;
 	}
 	//affichage
