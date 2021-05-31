@@ -30,6 +30,14 @@ public class MessageBody {
 	}
 	//affichage
 	public String toString() {
-		return ""+code_msg+"";
+		String msg;
+		if(code_msg == 0)
+			msg = "Capability Message !!! \n" + 
+					"code = 1 => Specification msg, \r\n" + 
+					"code = 2 => Receipt msg, \r\n" + 
+					"code = 3 => Result msg, \r\n" + 
+					"sinon => Interrupt msg;\r\n";
+		else msg = ""+code_msg+"";
+		return msg;
 	}
 }

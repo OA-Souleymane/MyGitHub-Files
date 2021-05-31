@@ -7,7 +7,8 @@ import com.rabbitmq.client.DeliverCallback;
 public class Controller {
 	static String message = "";
 	public static void main(String[] args) throws Exception {
-		
+	//-----------------------------------------------------------------------
+		//Capability retrieved
 		SubscribeOnCapability controllerR1 = new SubscribeOnCapability();
 		System.out.println("En attente de Spec msg ");
 		do {
@@ -22,13 +23,15 @@ public class Controller {
 		    Thread.sleep(1000);
         	controllerR1.canal.basicConsume("CAPAILITY" , true, deliverCallback, consumerTag -> { }); 
 		} while(message == "");
-		
+//------------------------------------------------------------------------------------
+	  //send code specification
+		//on saisit spec code (soit 1 ou une interruption ==> autre que 0,2,3)
 		System.out.println("-----------------------------------------------");
 		int code_msg;
 		System.out.println("donnez une spécification");
 	    Scanner sc = new Scanner(System.in);
 	    code_msg = sc.nextInt();
-	    while(code_msg != 0 && code_msg != 1 && code_msg != 2 && code_msg != 3){
+	    while(code_msg < 1 || code_msg == 1 || code_msg > 3){
 			System.out.println("donnez une nouvelle spécification");
 		    code_msg = sc.nextInt();
 		}
@@ -36,7 +39,8 @@ public class Controller {
 		MessageBody msg1 = new MessageBody(code_msg);
 		controllerP1.Publish("SPEC", msg1.toString());
 		Thread.sleep(1000);
-	
+//--------------------------------------------------------------------------------
+		//Monitoring the result
 		System.out.println("----------------------------------------------");
 		message = "";
 		SubscribeOnCapability controllerR2 = new SubscribeOnCapability();
