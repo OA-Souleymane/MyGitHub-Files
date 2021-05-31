@@ -31,7 +31,7 @@ public class Controller {
 		System.out.println("donnez une spécification");
 	    Scanner sc = new Scanner(System.in);
 	    code_msg = sc.nextInt();
-	    while(code_msg < 1 || code_msg == 1 || code_msg > 3){
+	    while(code_msg == 2 || code_msg == 2 || code_msg == 3){
 			System.out.println("donnez une nouvelle spécification");
 		    code_msg = sc.nextInt();
 		}
@@ -55,8 +55,6 @@ public class Controller {
 		
 	        controllerR2.canal.basicConsume("RES" , true, deliverCallback, consumerTag -> { }); 
 		} while(message != "");
-		
-		System.out.println("moi");
 
 	}
 
