@@ -41,9 +41,7 @@ public class Agent {
        		   else
        		      type = "Interruption";
        		   System.out.println("["+type+" msg : code message "+code+"]");
-       		  
-       		  
-        	};
+           	};
         	Thread.sleep(2000);
         	agentR1.canal.basicConsume("SPEC" , true, deliverCallback, consumerTag -> { }); 
 		} while(Integer.parseInt(message.toString()) != 1);       
@@ -56,7 +54,6 @@ public class Agent {
 	int accuse = 1;
 	while(true) {
 		PublishCapability agentP2 = new PublishCapability();
-		//System.out.println(msg.toString());
 		MessageBody msg2;
 		if(accuse == 1) { //code 2==> receipt msg
 			 msg2 = new MessageBody(2);
@@ -64,21 +61,8 @@ public class Agent {
 		}else //code 3==>result msg
 		     msg2 = new MessageBody(code_msg);	
 		
-		agentP2.Publish("RES", msg2.toString());
-		//code_msg ++;
-		Thread.sleep(1000);
-		
-		/*SubscribeOnCapability agentR2 = new SubscribeOnCapability();
-		agentR2.Subscribe("INTERRUPT");
-        DeliverCallback deliverCallback = (consumerTag, delivery) -> {
-        	inter_msg = new String(delivery.getBody(), "UTF-8");
-        	 
-        	 
-        };
-        agentR2.canal.basicConsume("INTERRUPT" , true, deliverCallback, consumerTag -> { });
-    	//agentR2.canal.close();
-    	if(inter_msg != "")
-   		 System.exit(1);*/
+		agentP2.Publish("CAPAILITY", msg2.toString());
+		Thread.sleep(3000);
 	}
 	}
 
