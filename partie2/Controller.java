@@ -8,10 +8,10 @@ public class Controller {
 	static String inter = "";
 	static String message = "";
 	
-	static int rang = 1;
+	static int ordre = 1;
 	public static void main(String[] args) throws Exception {
 	//-----------------------------------------------------------------------
-		//Capability retrieved
+		//Capability retrieved 
 		SubscribeOnCapability controllerR1 = new SubscribeOnCapability();
 		controllerR1.Subscribe("CAPAILITY");
 		System.out.println("En attente de Capability msg ");
@@ -19,19 +19,19 @@ public class Controller {
 			System.out.print("!");
         DeliverCallback deliverCallback = (consumerTag, delivery) -> {
         	 message = new String(delivery.getBody(), "UTF-8");
-        	 if(rang == 1) { //Monitoring capability
+        	 if(ordre == 1) { //Monitoring capability
         		 System.out.println();
         	     System.out.println(" message "+message);
-        	     rang ++;
-        	 }else{  //Monitoring the result
-        		 if(rang == 2) {
+        	     ordre ++;
+        	 }else{  //Monitoring the Receipt
+        		 if(ordre == 2) {
         			System.out.println("----------------------------------------------");
         			System.out.println("Receipt msg");
-        			 rang++;
-        		 }else if(rang == 3) {
+        			ordre++;
+        		 }else if(ordre == 3) { //Monitoring the result
         			 System.out.println("----------------------------------------------");
         			 System.out.println("Result msg");
-        			 rang ++;
+        			 ordre ++;
         			 }
         		 int code = Integer.parseInt(message);           
                  //construction des modèle de message
@@ -52,6 +52,7 @@ public class Controller {
 		    Thread.sleep(2000);
         	controllerR1.canal.basicConsume("CAPAILITY" , true, deliverCallback, consumerTag -> { }); 
 		} while(message == "");
+		
 //------------------------------------------------------------------------------------
 	  //send code specification
 		//on saisit spec code (soit 1 ou une interruption ==> autre que 0,2,3)
