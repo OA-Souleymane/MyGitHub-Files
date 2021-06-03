@@ -3,6 +3,9 @@ package partie2;
 import com.rabbitmq.client.DeliverCallback;
 
 public class Agent {
+	static String broker1 = "first_broker";
+	static String broker2 = "second_broker";
+	
 	static String inter_msg = "";
 	static String message = "0";
 	public static void main(String[] args) throws Exception {
@@ -14,7 +17,7 @@ public class Agent {
 		//agent first publish
 		PublishCapability agentP1 = new PublishCapability();
 		MessageBody msg1 = new MessageBody(0);
-		agentP1.Publish("CAPAILITY", msg1.toString());
+		agentP1.Publish(broker1, msg1.toString());
 		System.out.println("capability msg envoyé!");
 		System.out.println("-----------------------------------------");
 //-----------------------------------------------------------------------------------------------------------
@@ -23,7 +26,7 @@ public class Agent {
 		SubscribeOnCapability agentR1 = new SubscribeOnCapability();
 		System.out.println("Attente de spécification msg!");
 		do {
-			agentR1.Subscribe("SPEC");
+			agentR1.Subscribe(broker2);
 			//System.out.print("!");
             DeliverCallback deliverCallback = (consumerTag, delivery) -> {
         	 message = new String(delivery.getBody(), "UTF-8");
@@ -41,9 +44,12 @@ public class Agent {
        		   else
        		      type = "Interruption";
        		   System.out.println("["+type+" msg : code message "+code+"]");
+       		   /*if(message != "1") {
+       			   System.out.println("Interrupt msg Reçu");
+       			   System.exit(0);}*/
            	};
         	Thread.sleep(2000);
-        	agentR1.canal.basicConsume("SPEC" , true, deliverCallback, consumerTag -> { }); 
+        	agentR1.canal.basicConsume(broker2 , true, deliverCallback, consumerTag -> { }); 
 		} while(Integer.parseInt(message.toString()) != 1);       
       	      
       	      
@@ -61,7 +67,7 @@ public class Agent {
 		}else //code 3==>result msg
 		     msg2 = new MessageBody(code_msg);	
 		
-		agentP2.Publish("CAPAILITY", msg2.toString());
+		agentP2.Publish(broker1, msg2.toString());
 		Thread.sleep(3000);
 	}
 	}

@@ -1,43 +1,66 @@
 package partie2;
 
 import java.nio.charset.StandardCharsets;
+import java.util.Date;
 
 public class MessageBody {
 	
-	int code_msg = 0;
-	//code = 0 => Capability msg, 
-	//code = 1 => Specification msg, 
-	//code = 2 => Receipt msg, 
-	//code = 3 => Result msg, 
-	//sinon => Interrupt msg;
-	//default constructor
-	public MessageBody() {
-		code_msg = 0;
-	}
+	private String name;
+	private String type;
+	private String operationId;
+	private String when;
+	private String ts;
+	private String target;
+	private String resultColumns[];
 	//constructor
-	public MessageBody(int cMsg) {
-		code_msg = cMsg;
+	public MessageBody(String nom, String typ, String opId,	String wh, 
+				String date, String cible, String resCol[]) {
+		name = nom;
+		type = typ;
+		operationId = opId;
+		when = wh;
+		date = ""+new Date();
+		ts = date;
+		target = cible;
+		resultColumns = resCol;
 	}
-	
 	//getter
-	public int getCodeMsg() {
-		return this.code_msg;			
+	public String getName() {
+		return this.name;			
 	}
-	
+	public String getType() {
+		return this.type;			
+	}
+	public String getWhen() {
+		return this.when;			
+	}
+	public String getOperationId() {
+		return this.operationId;			
+	}
+	public String getTs() {
+		return this.ts;			
+	}
+	public String getTarget() {
+		return this.target;			
+	}
+	public String[] getResultColums() {
+		return this.resultColumns;			
+	}
 	//setter
-	void setCodeMsg(int cMsg) {
-		code_msg = cMsg;
+	void setName(String nom) {
+		this.name = nom;
 	}
-	//affichage
-	public String toString() {
-		String msg;
-		if(code_msg == 0)
-			msg = "Capability Message !!! \n" + 
-					"code = 1 => Specification msg, \r\n" + 
-					"code = 2 => Receipt msg, \r\n" + 
-					"code = 3 => Result msg, \r\n" + 
-					"sinon => Interrupt msg;\r\n";
-		else msg = ""+code_msg+"";
-		return msg;
+	void setType(String tp) {
+		this.type = tp;
+	} void setWhen(String wh) {
+		this.when = wh;
+	}void setOperationId(String opId) {
+		this.operationId = opId;
+	}void setTs(String ts) {
+		this.ts = ts;
+	}void setTarget(String trg) {
+		this.name = trg;
+	}void setResultColums(String resC[]) {
+		this.resultColumns = resC;
 	}
 }

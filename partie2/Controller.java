@@ -5,16 +5,20 @@ import java.util.*;
 import com.rabbitmq.client.DeliverCallback;
 
 public class Controller {
+	//broker or queue
+	static String broker1 = "first_broker";
+	static String broker2 = "second_broker";
+	
 	static String inter = "";
-	static String message = "";
+	private static String message = "";
 	
 	static int ordre = 1;
 	public static void main(String[] args) throws Exception {
 	//-----------------------------------------------------------------------
 		//Capability retrieved 
 		SubscribeOnCapability controllerR1 = new SubscribeOnCapability();
-		controllerR1.Subscribe("CAPAILITY");
-		System.out.println("En attente de Capability msg ");
+		controllerR1.Subscribe(broker1);
+		System.out.println("En attente de Capability msgbbbbbb ");
 		do {
 			System.out.print("!");
         DeliverCallback deliverCallback = (consumerTag, delivery) -> {
@@ -50,7 +54,8 @@ public class Controller {
         	 }
         	};
 		    Thread.sleep(2000);
-        	controllerR1.canal.basicConsume("CAPAILITY" , true, deliverCallback, consumerTag -> { }); 
+		    
+        	controllerR1.canal.basicConsume(broker1 , true, deliverCallback, consumerTag -> { }); 
 		} while(message == "");
 		
 //------------------------------------------------------------------------------------
@@ -65,10 +70,11 @@ public class Controller {
 			System.out.println("donnez une nouvelle spécification");
 		    code_msg = sc.nextInt();
 		}
+	    
 		PublishCapability controllerP1 = new PublishCapability();
 		MessageBody msg1 = new MessageBody(code_msg);
-		controllerP1.Publish("SPEC", msg1.toString());
+		controllerP1.Publish(broker2, msg1.toString());
 		Thread.sleep(1000);
-	}
+	
 
-}
+}}
