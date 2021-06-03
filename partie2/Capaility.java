@@ -1,5 +1,7 @@
 package partie2;
 
+import java.util.Arrays;
+
 public class Capaility extends MessageBody{
 	
  
@@ -17,5 +19,14 @@ public class Capaility extends MessageBody{
     public capability getCapaility() {
     	return Capability;
     }
+
+	@Override
+	public String toString() {
+		return "Capaility [Capability=" + Capability + ", getName()=" + getName() + ", getType()=" + getType()
+				+ ", getWhen()=" + getWhen() + ", getOperationId()=" + getOperationId() + ", getTs()=" + getTs()
+				+ ", getTarget()=" + getTarget() + ", getResultColums()=" + Arrays.toString(getResultColums())
+				+ ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString()
+				+ "]";
+	}
     
 }

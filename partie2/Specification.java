@@ -1,5 +1,7 @@
 package partie2;
 
+import java.util.Arrays;
+
 public class Specification extends MessageBody{
 
 	private enum specification{mesure};
@@ -17,4 +19,14 @@ public class Specification extends MessageBody{
 	    	return Specification;
 	    }
 
+		@Override
+		public String toString() {
+			return "Specification [Specification=" + Specification + ", getName()=" + getName() + ", getType()="
+					+ getType() + ", getWhen()=" + getWhen() + ", getOperationId()=" + getOperationId() + ", getTs()="
+					+ getTs() + ", getTarget()=" + getTarget() + ", getResultColums()="
+					+ Arrays.toString(getResultColums()) + ", getClass()=" + getClass() + ", hashCode()=" + hashCode()
+					+ ", toString()=" + super.toString() + "]";
+		}
+
+	    
 }

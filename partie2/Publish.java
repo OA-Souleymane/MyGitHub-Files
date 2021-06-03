@@ -9,12 +9,12 @@ import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 
 
-public class PublishCapability {
+public class Publish {
 	 ConnectionFactory factory;
 	 Connection connexion;
 	 Channel canal;
 	 
-	public PublishCapability() throws Exception {
+	public Publish() throws Exception {
 		//interface de connexion avec RabbitMQ
         factory = new ConnectionFactory();
       //préciser que la connection en localhost

@@ -8,12 +8,12 @@ import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.DeliverCallback;
 
-public class SubscribeOnCapability {
+public class Subscribe {
 	String QUEUE;
 	Channel canal;
 	ConnectionFactory factory;
 	Connection connexion;
-	public SubscribeOnCapability() throws Exception {
+	public Subscribe() throws Exception {
 		factory = new ConnectionFactory();
 		connexion = factory.newConnection();		
 		canal = connexion.createChannel();
