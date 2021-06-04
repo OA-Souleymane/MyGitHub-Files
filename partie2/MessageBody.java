@@ -8,12 +8,12 @@ public class MessageBody {
 	private String name;
 	private String type;
 	private String operationId;
-	private String when;
+	private When when;
 	private String ts;
 	private String target;
 	private String resultColumns[];
 	//constructor
-	public MessageBody(String nom, String typ, String opId,	String wh, 
+	public MessageBody(String nom, String typ, String opId,	When wh, 
 				String date, String cible, String resCol[]) {
 		name = nom;
 		type = typ;
@@ -31,7 +31,7 @@ public class MessageBody {
 	public String getType() {
 		return this.type;			
 	}
-	public String getWhen() {
+	public When getWhen() {
 		return this.when;			
 	}
 	public String getOperationId() {
@@ -52,15 +52,20 @@ public class MessageBody {
 	}
 	void setType(String tp) {
 		this.type = tp;
-	} void setWhen(String wh) {
+	} 
+	void setWhen(When wh) {
 		this.when = wh;
-	}void setOperationId(String opId) {
+	}
+	void setOperationId(String opId) {
 		this.operationId = opId;
-	}void setTs(String ts) {
+	}
+	void setTs(String ts) {
 		this.ts = ts;
-	}void setTarget(String trg) {
+	}
+	void setTarget(String trg) {
 		this.name = trg;
-	}void setResultColums(String resC[]) {
+	}
+	void setResultColums(String resC[]) {
 		this.resultColumns = resC;
 	}
 }

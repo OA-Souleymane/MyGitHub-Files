@@ -8,7 +8,7 @@ public class Capaility extends MessageBody{
   private enum capability{mesure};
   private capability Capability;
   
-    public Capaility(String nom, String typ, String opId,	String wh, 
+    public Capaility(String nom, String typ, String opId,	When wh, 
 			String date, String cible, String resCol[]) {
     	
     	super(nom, typ, opId, wh, date, cible, resCol);
@@ -22,10 +22,9 @@ public class Capaility extends MessageBody{
 
 	@Override
 	public String toString() {
-		return "Capaility [Capability=" + Capability + ", getName()=" + getName() + ", getType()=" + getType()
-				+ ", getWhen()=" + getWhen() + ", getOperationId()=" + getOperationId() + ", getTs()=" + getTs()
-				+ ", getTarget()=" + getTarget() + ", getResultColums()=" + Arrays.toString(getResultColums())
-				+ ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString()
+		return "Capaility [" + Capability + ", " + getName() + ", " + getType()
+				+ ", " + getWhen() + ", " + getOperationId() + ", " + getTs()
+				+ ", " + getTarget() + ", " + Arrays.toString(getResultColums())
 				+ "]";
 	}
     

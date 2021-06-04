@@ -7,7 +7,7 @@ public class Specification extends MessageBody{
 	private enum specification{mesure};
 	  private specification Specification;
 	  
-	    public Specification(String nom, String typ, String opId,	String wh, 
+	    public Specification(String nom, String typ, String opId,	When wh, 
 				String date, String cible, String resCol[]) {
 	    	
 	    	super(nom, typ, opId, wh, date, cible, resCol);
@@ -21,11 +21,10 @@ public class Specification extends MessageBody{
 
 		@Override
 		public String toString() {
-			return "Specification [Specification=" + Specification + ", getName()=" + getName() + ", getType()="
-					+ getType() + ", getWhen()=" + getWhen() + ", getOperationId()=" + getOperationId() + ", getTs()="
-					+ getTs() + ", getTarget()=" + getTarget() + ", getResultColums()="
-					+ Arrays.toString(getResultColums()) + ", getClass()=" + getClass() + ", hashCode()=" + hashCode()
-					+ ", toString()=" + super.toString() + "]";
+			return "Specification [" + Specification + ", " + getName() + ", "
+					+ getType() + ", " + getWhen() + ", " + getOperationId() + ", "
+					+ getTs() + ", " + getTarget() + ", "
+					+ Arrays.toString(getResultColums()) + "]";
 		}
 
 	    
