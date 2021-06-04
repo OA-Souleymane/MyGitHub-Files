@@ -9,7 +9,7 @@ public class Receipt extends MessageBody{
 	    public Receipt(String nom, String typ, String opId,	When wh, 
 				String date, String cible, String resCol[]) {
 	    	
-	    	super(nom, typ, opId, wh, date, cible, resCol);
+	    	super(nom, typ, "Receipt", wh, date, cible, resCol);
 	    	Receipt = receipt.mesure; 
 	    	
 	    }
