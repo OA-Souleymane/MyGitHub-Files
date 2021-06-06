@@ -1,5 +1,6 @@
 package partie2;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Result extends MessageBody{
@@ -8,7 +9,7 @@ public class Result extends MessageBody{
 	  private result Result;
 	  
 	    public Result(String nom, String typ, String opId,	When wh, 
-				String date, String cible, String resCol[]) {
+				String date, String cible, ArrayList<String> resCol) {
 	    	
 	    	super(nom, typ, "Result", wh, date, cible, resCol);
 	    	Result = result.mesure; 
@@ -21,9 +22,7 @@ public class Result extends MessageBody{
 
 		@Override
 		public String toString() {
-			return "Result [" + Result + ", " + getName() + ", " + getType() + ", "
-					+ getWhen() + ", " + getOperationId() + ", " + getTs() + ", "
-					+ getTarget() + ", " + Arrays.toString(getResultColums()) + "]";
+			return "Result [" + Result + ", " + super.toString()+  "]";
 		}
 	    
 	    

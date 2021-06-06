@@ -1,6 +1,8 @@
 package partie2;
 
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 
 public class MessageBody {
@@ -11,10 +13,11 @@ public class MessageBody {
 	private When when;
 	private String ts;
 	private String target;
-	private String resultColumns[];
+	private ArrayList<String> resultColumns;
 	//constructor
 	public MessageBody(String nom, String typ, String opId,	When wh, 
-				String date, String cible, String resCol[]) {
+				String date, String cible, ArrayList<String> resCol) {
+		
 		name = nom;
 		type = typ;
 		operationId = opId;
@@ -22,6 +25,7 @@ public class MessageBody {
 		date = ""+new Date();
 		ts = date;
 		target = cible;
+		String spaceMemory = ""+new Memory()+"";
 		resultColumns = resCol;
 	}
 	//getter
@@ -43,7 +47,7 @@ public class MessageBody {
 	public String getTarget() {
 		return this.target;			
 	}
-	public String[] getResultColums() {
+	public ArrayList<String> getResultColums() {
 		return this.resultColumns;			
 	}
 	//setter
@@ -65,7 +69,14 @@ public class MessageBody {
 	void setTarget(String trg) {
 		this.name = trg;
 	}
-	void setResultColums(String resC[]) {
+	void setResultColums(ArrayList<String> resC) {
 		this.resultColumns = resC;
 	}
+	@Override
+	public String toString() {
+		return ""+ name + ", " + type + ", " + operationId + "," + when.toString()
+				+ ", " + ts + ", " + target + ", " + resultColumns.toString() + "";
+	}
+	
+	
 }

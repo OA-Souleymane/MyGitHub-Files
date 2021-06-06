@@ -1,15 +1,18 @@
 package partie2;
 
+import java.util.ArrayList;
 
 public class Receipt extends MessageBody{
 
 	private enum receipt{mesure};
+	private static enum etat{Receipt, Errors};
 	  private receipt Receipt;
+	  private etat etat_rec;
 	  
 	    public Receipt(String nom, String typ, String opId,	When wh, 
-				String date, String cible, String resCol[]) {
+				String date, String cible, ArrayList<String> resCol) {
 	    	
-	    	super(nom, typ, "Receipt", wh, date, cible, resCol);
+	    	super(nom, typ, opId, wh, date, cible, resCol);
 	    	Receipt = receipt.mesure; 
 	    	
 	    }
@@ -17,4 +20,14 @@ public class Receipt extends MessageBody{
 	    public receipt getReceipt() {
 	    	return Receipt;
 	    }
+	    public etat getEtat() {
+	    	return this.etat_rec;
+	    }
+
+		@Override
+		public String toString() {
+			return "Receipt [" + Receipt +", "+  super.toString() + "]";
+		}
+	    
+	    
 }

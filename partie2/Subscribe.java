@@ -13,14 +13,25 @@ public class Subscribe {
 	Channel canal;
 	ConnectionFactory factory;
 	Connection connexion;
+	String message;
 	public Subscribe() throws Exception {
 		factory = new ConnectionFactory();
 		connexion = factory.newConnection();		
 		canal = connexion.createChannel();
+
 	}	
 	
 	public void Subscribe(String queue)	throws Exception {
 		 QUEUE = queue;
 	     canal.queueDeclare(QUEUE , false, false, false, null);
+	     DeliverCallback broker1 = (consumerTag, delivery) -> {
+	       	  this.message = new String(delivery.getBody(), "UTF-8");       	     
+	    };
+	     canal.basicConsume(QUEUE , true, broker1, consumerTag -> { }); 
 	}
+	
+	public String getMessage() {
+		return this.message;
+	}
+	
 }

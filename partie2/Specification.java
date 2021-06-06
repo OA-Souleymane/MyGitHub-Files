@@ -1,5 +1,6 @@
 package partie2;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Specification extends MessageBody{
@@ -9,7 +10,7 @@ public class Specification extends MessageBody{
 	  private specification Specification;
 	  
 	    public Specification(String nom, String typ, String opId,	When wh, 
-				String date, String cible, String resCol[]) {
+				String date, String cible, ArrayList<String> resCol) {
 	    	
 	    	super(nom, typ, "Specification", wh, date, cible, resCol);
 	    	Specification = specification.mesure; 
@@ -22,10 +23,7 @@ public class Specification extends MessageBody{
 
 		@Override
 		public String toString() {
-			return "Specification [" + Specification + ", " + getName() + ", "
-					+ getType() + ", " + getWhen() + ", " + getOperationId() + ", "
-					+ getTs() + ", " + getTarget() + ", "
-					+ Arrays.toString(getResultColums()) + "]";
+			return "Specification [" + Specification + ", " + super.toString()+  "]";
 		}
 
 	    
