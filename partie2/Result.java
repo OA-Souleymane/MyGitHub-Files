@@ -22,7 +22,8 @@ public class Result extends MessageBody{
 
 		@Override
 		public String toString() {
-			return "Result [" + Result + ", " + super.toString()+  "]";
+			return "Result [" + Result + ", " + super.getName() + ", " + super.getType() + ", " + super.getOperationId() + "," + super.getWhen().toString()
+			+ ", " + super.getTs() + ", " + super.getTarget() + ", " + super.getResultColums().toString() +  "]";
 		}
 	    
 	    

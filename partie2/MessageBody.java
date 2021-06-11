@@ -25,7 +25,6 @@ public class MessageBody {
 		date = ""+new Date();
 		ts = date;
 		target = cible;
-		String spaceMemory = ""+new Memory()+"";
 		resultColumns = resCol;
 	}
 	//getter

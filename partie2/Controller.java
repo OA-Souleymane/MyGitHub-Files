@@ -11,58 +11,55 @@ public class Controller {
 	//broker or queue
 	
 	private static String Queue1 = "first_broker";
-	private static String Queue2 = "second_broker";
+	public static String Queue2 = "second_broker";
 	private static int num = 0;
 	static int nbre  = 0;
 	static String message = "";
 	private static ArrayList<String> resC;
+	 
+	public static InterfaceDeVisulisation f;
+	
 	public static void main(String[] args) throws Exception {
+		//interface d'affichage
+		f = new InterfaceDeVisulisation();
+		f.board.append("Attente de Capability msg");
+		//tableau des resultats
 		resC = new ArrayList<String>();
-		resC.add("CPU usage");
-		resC.add("Memory Available");
-     	//Reception capability	
+     	//Reception capability msg	
 		Subscribe controllerR1 = new Subscribe();
 		controllerR1.Subscribe(Queue1);
 		do {
+			f.board.setText(f.board.getText()+" !");
 			message = controllerR1.getMessage();
 			Thread.sleep(2000);
 		}while(message == null || message == "");
-		System.out.println(message);
+		f.board.setText(f.board.getText()+"\n"+message);
+		f.board.setText(f.board.getText()+"\nVeillez saisir quelque chose dans zone de decalalage <6");
      	//publication Specification
-     	
-     	int stop = 0;
-     	Scanner sc = new Scanner(System.in);int ord = 0;
-	        do{
-	        	if(ord == 0) { 
-	    			System.out.println("donnez un decalage de capture");
-	        	    ord++;
-	        	}else 
-				System.out.println("donnez un nouveau decalage de capture");
-		        stop = sc.nextInt();
-		        
-			 }while(stop > 5);
-		  
+		    //le decalage entre les resultats
+	        	int stop = Integer.parseInt(f.decalage_input.getText());
+	        	while(stop>5) {
+	        		if(f.decalage_input.hasFocus() == false)
+	        		stop = Integer.parseInt(f.decalage_input.getText());
+	        		Thread.sleep(1000);
+	        	}
+	        	f.prd.setText("Now...to..."+stop);
+	    resC.add(""+f.choix_item.getSelectedItem());
      	Publish controllerP1 = new Publish();
 		MessageBody msg1 = new Specification(""+num+"", "cpu", "Specification", new When("Now",stop), "", "controller", resC);
 		controllerP1.Publish(Queue2, msg1.toString());
-		
-		Thread.sleep(4000);
 		String msg;
 		int nomb = 0;
-		System.out.println("appuyer sur <i> et entrer pour l'interrompre");
-		//String rep = sc.next();
+      //affichage des resultats
 		while(true) {
 			msg = controllerR1.getMessage();
-			if(message != msg)
-				System.out.println(msg);
-			System.out.println("----------------------------");
-			if(nomb == 6) {
-				
-				Publish controllerP2 = new Publish();
-				controllerP2.Publish(Queue2, new Interruption(""+nomb+"", "cpu", "Specification", new When("Now",stop), "", "controller", resC).toString());
-				
+			if(message != msg) {
+				f.board.setText(f.board.getText()+"\n----------------------------\n"+msg);
+				message = msg;
+				for(int i= 0; i< message.length()-3; i++) 
+		      		 if(message.charAt(i) == 'E' && message.charAt(i+1) == 'r' && message.charAt(i+2) == 'r' && message.charAt(i+3) == 'r')
+		      	 		 System.exit(0);
 			}
-			nomb ++;
 			Thread.sleep(Integer.parseInt(""+stop+"000"));
 				
 		}
