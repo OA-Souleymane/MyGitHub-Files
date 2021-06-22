@@ -1,14 +1,14 @@
-package partie2;
+package modele;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class Result extends MessageBody{
+public class Result extends MessageProprties{
 
 	private enum result{mesure};
 	  private result Result;
 	  
-	    public Result(String nom, String typ, String opId,	When wh, 
+	    public Result(String nom, String typ, String opId,	String wh, 
 				String date, String cible, ArrayList<String> resCol) {
 	    	
 	    	super(nom, typ, "Result", wh, date, cible, resCol);

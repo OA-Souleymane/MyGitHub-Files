@@ -1,15 +1,14 @@
-package partie2;
+package modele;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-
-public class Capability extends MessageBody{
+public class Capability extends MessageCommonProperties{
 	
  
   private enum capability{mesure};
   private capability Capability;
   
-    public Capability(String nom, String typ, String opId,	When wh, 
+    public Capability(String nom, String typ, String opId,	String wh, 
 			String date, String cible, ArrayList<String> resCol) {
     	
     	super(nom, typ, "Capability", wh, date, cible, resCol);
@@ -27,3 +26,5 @@ public class Capability extends MessageBody{
 	}
     
 }
+
+

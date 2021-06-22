@@ -1,27 +1,27 @@
-package partie2;
+package modele;
 
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 
-public class MessageBody {
+import com.google.gson.Gson;
+
+public class MessageCommonProperties {
 	
 	private String name;
 	private String type;
 	private String operationId;
-	private When when;
+	private String when;
 	private String ts;
 	private String target;
 	private ArrayList<String> resultColumns;
 	//constructor
-	public MessageBody(String nom, String typ, String opId,	When wh, 
+	public MessageCommonProperties(String nom, String typ, String opId,	String wh, 
 				String date, String cible, ArrayList<String> resCol) {
 		
 		name = nom;
 		type = typ;
 		operationId = opId;
-		when = wh;
+		when = "Start....Stop";
 		date = ""+new Date();
 		ts = date;
 		target = cible;
@@ -34,7 +34,7 @@ public class MessageBody {
 	public String getType() {
 		return this.type;			
 	}
-	public When getWhen() {
+	public String getWhen() {
 		return this.when;			
 	}
 	public String getOperationId() {
@@ -50,13 +50,13 @@ public class MessageBody {
 		return this.resultColumns;			
 	}
 	//setter
-	void setName(String nom) {
+	public void setName(String nom) {
 		this.name = nom;
 	}
-	void setType(String tp) {
+	public void setType(String tp) {
 		this.type = tp;
 	} 
-	void setWhen(When wh) {
+	public void setWhen(String wh) {
 		this.when = wh;
 	}
 	void setOperationId(String opId) {
@@ -73,9 +73,14 @@ public class MessageBody {
 	}
 	@Override
 	public String toString() {
-		return ""+ name + ", " + type + ", " + operationId + "," + when.toString()
+		return ""+ name + ", " + type + ", " + operationId + "," + when
 				+ ", " + ts + ", " + target + ", " + resultColumns.toString() + "";
 	}
+	public String convertObjetJson(MessageCommonProperties msgp) {
+		
+		return ""+new Gson().toJson(msgp)+"";
 	
-	
+	}
+
+
 }
