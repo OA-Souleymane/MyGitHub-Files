@@ -32,7 +32,7 @@ public class Interrupt extends MessageCommonProperties{
        public Interrupt fromJsonStr(String msg) {
     		
     		Gson gson = new Gson();
-         Interrupt interrupt = gson.fromJson(msg, Interrupt.class);
+            Interrupt interrupt = gson.fromJson(msg, Interrupt.class);
     		return interrupt;
     		
     	   }
