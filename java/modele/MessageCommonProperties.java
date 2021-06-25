@@ -15,17 +15,17 @@ public class MessageCommonProperties {
 	private String target;
 	private ArrayList<String> resultColumns;
 	//constructor
-	public MessageCommonProperties(String nom, String typ, String opId,	String wh, 
-				String date, String cible, ArrayList<String> resCol) {
+	public MessageCommonProperties() {}
+	public MessageCommonProperties(String name, String type, String operationId,	String when, 
+				String ts, String target, ArrayList<String> resultColumns) {
 		
-		name = nom;
-		type = typ;
-		operationId = opId;
-		when = "Start....Stop";
-		date = ""+new Date();
-		ts = date;
-		target = cible;
-		resultColumns = resCol;
+		this.name = name;
+		this.type = type;
+		this.operationId = operationId;
+		this.when = when;
+		this.ts = ts;
+		this.target = target;
+		this.resultColumns = resultColumns;
 	}
 	//getter
 	public String getName() {
@@ -50,37 +50,40 @@ public class MessageCommonProperties {
 		return this.resultColumns;			
 	}
 	//setter
-	public void setName(String nom) {
-		this.name = nom;
+	public void setName(String name) {
+		this.name = name;
 	}
-	public void setType(String tp) {
-		this.type = tp;
+	public void setType(String type) {
+		this.type = type;
 	} 
-	public void setWhen(String wh) {
-		this.when = wh;
+	public void setWhen(String when) {
+		this.when = when;
 	}
-	void setOperationId(String opId) {
-		this.operationId = opId;
+	void setOperationId(String operationId) {
+		this.operationId = operationId;
 	}
 	void setTs(String ts) {
 		this.ts = ts;
 	}
-	void setTarget(String trg) {
-		this.name = trg;
+	void setTarget(String target) {
+		this.name = target;
 	}
-	void setResultColums(ArrayList<String> resC) {
-		this.resultColumns = resC;
+	void setResultColums(ArrayList<String> resultColumns) {
+		this.resultColumns = resultColumns;
 	}
-	@Override
-	public String toString() {
-		return ""+ name + ", " + type + ", " + operationId + "," + when
-				+ ", " + ts + ", " + target + ", " + resultColumns.toString() + "";
-	}
-	public String convertObjetJson(MessageCommonProperties msgp) {
-		
-		return ""+new Gson().toJson(msgp)+"";
 	
-	}
-
-
+	//Convert MessageCommonProperties to JSon
+	public String toJsonStr(MessageCommonProperties msg) {
+		
+		return ""+new Gson().toJson(msg)+"";
+	
+	}//Convert JSon to MessageCommonProperties
+  /*public MessageCommonProperties fromJsonStr(String msg) {
+	
+	Gson gson = new Gson();
+    MessageCommonProperties obj = gson.fromJson(msg, MessageCommonProperties.class);
+	return obj;
+	
+   }*/
+	
 }

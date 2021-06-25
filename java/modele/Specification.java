@@ -3,28 +3,36 @@ package modele;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class Specification extends MessageProprties{
+import com.google.gson.Gson;
 
-	private enum specification{mesure};
+public class Specification extends MessageCommonProperties{
+
+	private enum SpecificationEnum{mesure};
 	
-	  private specification Specification;
+	  private SpecificationEnum specification;
 	  
-	    public Specification(String nom, String typ, String opId,	String wh, 
-				String date, String cible, ArrayList<String> resCol) {
+	  public Specification() {}
+	    public Specification(SpecificationEnum specification, String name, String type, String operationId,	String when, 
+				String ts, String target, ArrayList<String> resultColumns) {
 	    	
-	    	super(nom, typ, "Specification", wh, date, cible, resCol);
-	    	Specification = specification.mesure; 
+	    	super(name, type,operationId, when, ts, target, resultColumns);
+	    	this.specification = specification; 
 	    	
 	    }
 	    
-	    public specification getSpecification() {
-	    	return Specification;
+	    public SpecificationEnum getSpecification() {
+	    	return specification;
 	    }
-
-		@Override
-		public String toString() {
-			return "Specification [" + Specification + ", " + super.toString()+  "]";
-		}
-
-	    
+      public void setSpecification(SpecificationEnum specification) {
+    	  
+    	  this.specification = specification; 
+      }
+      public Specification fromJsonStr(String msg) {
+    		
+    		Gson gson = new Gson();
+    		Specification spec = gson.fromJson(msg, Specification.class);
+    		return spec;
+    		
+    	   }
+      
 }

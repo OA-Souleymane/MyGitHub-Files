@@ -2,28 +2,40 @@ package modele;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+
+import com.google.gson.Gson;
+
 public class Capability extends MessageCommonProperties{
 	
  
-  private enum capability{mesure};
-  private capability Capability;
+  public enum CapabilityEunm{mesure};
+  private CapabilityEunm capability;
   
-    public Capability(String nom, String typ, String opId,	String wh, 
-			String date, String cible, ArrayList<String> resCol) {
+  public Capability() {}
+  
+    public Capability(CapabilityEunm capability, String name, String type, String operationId,	String when, 
+			String ts, String target, ArrayList<String> resultColumns) {
     	
-    	super(nom, typ, "Capability", wh, date, cible, resCol);
-    	Capability = capability.mesure; 
+    	super(name, type,operationId, when, ts, target, resultColumns);
+    	this.capability = capability; 
     	
     }
     
-    public capability getCapaility() {
-    	return Capability;
+    public CapabilityEunm getCapaility() {
+    	return capability;
     }
 
-	@Override
-	public String toString() {
-		return "Capaility [" + Capability + ", " + super.toString()+ "]";
-	}
+    public void setResult(CapabilityEunm capability) {
+  	  
+    	this.capability = capability;
+      }
+    public Capability fromJsonStr(String msg) {
+    	
+    	Gson gson = new Gson();
+        Capability cap = gson.fromJson(msg, Capability.class);
+    	return cap;
+    	
+       }
     
 }
 

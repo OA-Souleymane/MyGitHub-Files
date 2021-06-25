@@ -1,8 +1,6 @@
 package agent;
 
-import java.io.IOException;
 import java.nio.charset.StandardCharsets;
-import java.util.concurrent.TimeoutException;
 
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
@@ -10,14 +8,16 @@ import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.DeliverCallback;
 
 import modele.Capability;
+import modele.Interrupt;
 import modele.Receipt;
 import modele.Result;
+import modele.Specification;
 
 public class AgentPubSub {
 	
 
 	public void publishCapability(Capability cap) throws Exception {
-		String queue = "Capability";
+		String queue = "/capability";
 		ConnectionFactory factory = new ConnectionFactory();
 		factory.setHost("localhost");
 		Connection connexion = factory.newConnection();
@@ -28,8 +28,8 @@ public class AgentPubSub {
 	       canal.basicPublish("", queue , null, cap.toString().getBytes(StandardCharsets.UTF_8));
 	}
 		
-	public void subcribeSpeifiation() throws Exception {
-		String queue = "Specification";
+	public void subscribeSpecifiation() throws Exception {
+		String queue = "/specification";
 		ConnectionFactory factory = new ConnectionFactory();
 		factory.setHost("localhost");
 		Connection connexion = factory.newConnection();
@@ -37,13 +37,16 @@ public class AgentPubSub {
 		canal.queueDeclare(queue , false, false, false, null);         
 		
 		DeliverCallback broker1 = (consumerTag, delivery) -> {
-			String message = new String(delivery.getBody(), "UTF-8");       	     
+			String message = new String(delivery.getBody(), "UTF-8"); 
+			
+			Specification specification = new Specification().fromJsonStr(message);
+			new AgentPubSubCallback().subscribeSpecificationCallback(specification);
 	    }; 
 	     canal.basicConsume(queue , true, broker1, consumerTag -> { });
 	}
 	
 	public void publishReceipt(Receipt receipt) throws Exception {
-		String queue = "Receipt";
+		String queue = "/receipt";
 		ConnectionFactory factory = new ConnectionFactory();
 		factory.setHost("localhost");
 		Connection connexion = factory.newConnection();
@@ -55,7 +58,7 @@ public class AgentPubSub {
 	}
 	
 	public void publishResult(Result result) throws Exception {
-		String queue = "Result";
+		String queue = "/result";
 		ConnectionFactory factory = new ConnectionFactory();
 		factory.setHost("localhost");
 		Connection connexion = factory.newConnection();
@@ -67,8 +70,8 @@ public class AgentPubSub {
 	}
 	
 	
-	public void subcribeInterrupt() throws Exception {
-		String queue = "Interrupt";
+	public void subscribeInterrupt() throws Exception {
+		String queue = "/interrupt";
 		ConnectionFactory factory = new ConnectionFactory();
 		factory.setHost("localhost");
 		Connection connexion = factory.newConnection();
@@ -76,7 +79,10 @@ public class AgentPubSub {
 		canal.queueDeclare(queue , false, false, false, null);         
 		
 		DeliverCallback broker1 = (consumerTag, delivery) -> {
-			String message = new String(delivery.getBody(), "UTF-8");       	     
+			String message = new String(delivery.getBody(), "UTF-8");  
+			
+			Interrupt interrupt = new Interrupt().fromJsonStr(message);
+			new AgentPubSubCallback().subscribeInterruptCallback(interrupt);
 	    };
 	     canal.basicConsume(queue , true, broker1, consumerTag -> { });
 	}

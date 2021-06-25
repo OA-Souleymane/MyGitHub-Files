@@ -3,28 +3,38 @@ package modele;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class Result extends MessageProprties{
+import com.google.gson.Gson;
 
-	private enum result{mesure};
-	  private result Result;
+
+public class Result extends MessageCommonProperties{
+
+	private enum ResultEnum{mesure};
+	  private ResultEnum result;
 	  
-	    public Result(String nom, String typ, String opId,	String wh, 
-				String date, String cible, ArrayList<String> resCol) {
+	  public Result() {}
+	  
+	    public Result(ResultEnum result, String name, String type, String operationId,	String when, 
+				String ts, String target, ArrayList<String> resultColumns) {
 	    	
-	    	super(nom, typ, "Result", wh, date, cible, resCol);
-	    	Result = result.mesure; 
+	    	super(name, type,operationId, when, ts, target, resultColumns);
+	    	this.result = result; 
 	    	
 	    }
 	    
-	    public result getReceipt() {
-	    	return Result;
+	    public ResultEnum getResult() {
+	    	return result;
 	    }
 
-		@Override
-		public String toString() {
-			return "Result [" + Result + ", " + super.getName() + ", " + super.getType() + ", " + super.getOperationId() + "," + super.getWhen().toString()
-			+ ", " + super.getTs() + ", " + super.getTarget() + ", " + super.getResultColums().toString() +  "]";
-		}
+	    public void setResult(ResultEnum result) {
+	    	  
+	    	this.result = result;
+	      }
 	    
-	    
+	    public Result fromJsonStr(String msg) {
+    		
+	    	 Gson gson = new Gson();
+	         Result result = gson.fromJson(msg, Result.class);
+	         return result;
+	    		
+	     }
 }

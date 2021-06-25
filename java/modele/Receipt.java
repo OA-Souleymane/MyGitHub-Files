@@ -2,32 +2,37 @@ package modele;
 
 import java.util.ArrayList;
 
-public class Receipt extends MessageProprties{
+import com.google.gson.Gson;
 
-	private enum receipt{mesure};
-	private static enum etat{Receipt, Errors};
-	  private receipt Receipt;
-	  private etat etat_rec;
-	  
-	    public Receipt(String nom, String typ, String opId,	String wh, 
-				String date, String cible, ArrayList<String> resCol) {
+public class Receipt extends MessageCommonProperties{
+
+	    private enum ReceiptEnum{mesure};
+	    private ReceiptEnum receipt;
+	    
+	    public Receipt() {}
+	    
+	    public Receipt(ReceiptEnum receipt, String name, String type, String operationId,	String when, 
+				String ts, String target, ArrayList<String> resultColumns) {
 	    	
-	    	super(nom, typ, opId, wh, date, cible, resCol);
-	    	Receipt = receipt.mesure; 
+	    	super(name, type,operationId, when, ts, target, resultColumns);
+	    	this.receipt = receipt; 
 	    	
 	    }
 	    
-	    public receipt getReceipt() {
-	    	return Receipt;
-	    }
-	    public etat getEtat() {
-	    	return this.etat_rec;
+	    public ReceiptEnum getReceipt() {
+	    	return receipt;
 	    }
 
-		@Override
-		public String toString() {
-			return "Receipt [" + Receipt +", "+  super.toString() + "]";
-		}
-	    
+	    public void setResult(ReceiptEnum receipt) {
+	    	  
+	    	this.receipt = receipt;
+	    }
+       public Receipt fromJsonStr(String msg) {
+    		
+    	 Gson gson = new Gson();
+         Receipt receipt = gson.fromJson(msg, Receipt.class);
+         return receipt;
+    		
+     }
 	    
 }
