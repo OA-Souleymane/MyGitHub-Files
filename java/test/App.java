@@ -12,7 +12,6 @@ import modele.MessageCommonProperties;
 public class App 
 {
 	
-	enum Enum{mesure};
 	static Capability.CapabilityEunm capability;
     public static void main( String[] args )
     {ArrayList<String> resCol = new ArrayList<String>();
