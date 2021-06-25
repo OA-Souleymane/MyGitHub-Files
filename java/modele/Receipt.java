@@ -23,7 +23,7 @@ public class Receipt extends MessageCommonProperties{
 	    	return receipt;
 	    }
 
-	    public void setResult(ReceiptEnum receipt) {
+	    public void setReceipt(ReceiptEnum receipt) {
 	    	  
 	    	this.receipt = receipt;
 	    }

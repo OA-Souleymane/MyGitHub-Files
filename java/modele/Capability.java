@@ -32,8 +32,8 @@ public class Capability extends MessageCommonProperties{
     public Capability fromJsonStr(String msg) {
     	
     	Gson gson = new Gson();
-        Capability cap = gson.fromJson(msg, Capability.class);
-    	return cap;
+        Capability capability = gson.fromJson(msg, Capability.class);
+    	return capability;
     	
        }
     

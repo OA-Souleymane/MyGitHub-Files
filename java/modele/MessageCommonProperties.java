@@ -15,7 +15,10 @@ public class MessageCommonProperties {
 	private String target;
 	private ArrayList<String> resultColumns;
 	//constructor
-	public MessageCommonProperties() {}
+	public MessageCommonProperties() {
+		
+	}
+	
 	public MessageCommonProperties(String name, String type, String operationId,	String when, 
 				String ts, String target, ArrayList<String> resultColumns) {
 		
@@ -77,7 +80,9 @@ public class MessageCommonProperties {
 		
 		return ""+new Gson().toJson(msg)+"";
 	
-	}//Convert JSon to MessageCommonProperties
+	}
+	
+	//Convert JSon to MessageCommonProperties
   /*public MessageCommonProperties fromJsonStr(String msg) {
 	
 	Gson gson = new Gson();

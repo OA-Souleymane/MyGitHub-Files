@@ -20,11 +20,11 @@ public class Interrupt extends MessageCommonProperties{
 	    	
 	    }
 	    
-	    public InterruptEnum getInterruption() {
+	    public InterruptEnum getInterrupt() {
 	    	return interrupt;
 	    }
 
-	    public void setResult(InterruptEnum interrupt) {
+	    public void setInterrupt(InterruptEnum interrupt) {
 	    	  
 	    	this.interrupt = interrupt;
 	      }

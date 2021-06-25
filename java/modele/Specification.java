@@ -30,8 +30,8 @@ public class Specification extends MessageCommonProperties{
       public Specification fromJsonStr(String msg) {
     		
     		Gson gson = new Gson();
-    		Specification spec = gson.fromJson(msg, Specification.class);
-    		return spec;
+    		Specification specification = gson.fromJson(msg, Specification.class);
+    		return specification;
     		
     	   }
       
